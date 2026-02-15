@@ -1,21 +1,31 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 from pydantic import Field
 from .base import ITDBaseModel
 
 
 class PollOption(ITDBaseModel):
+    id: Optional[str] = None
     text: str
-    id: str
-    position: int
-    votesCount: int
+    position: Optional[int] = None
+    votes_count: int = Field(0, alias="votesCount")
 
 
 class Poll(ITDBaseModel):
+    
+    id: Optional[str] = None
+    post_id: Optional[str] = Field(None, alias="postId")
+
     question: str
     options: List[PollOption]
+
     multiple_choice: bool = Field(False, alias="multipleChoice")
+
+    total_votes: int = Field(0, alias="totalVotes")
+    has_voted: bool = Field(False, alias="hasVoted")
+    voted_option_ids: List[str] = Field(default_factory=list, alias="votedOptionIds")
+    created_at: str = Field(..., alias="createdAt")
 
     @classmethod
     def from_simple(
@@ -36,3 +46,4 @@ class Poll(ITDBaseModel):
             options=[PollOption(text=o) for o in options],
             multipleChoice=multiple_choice,
         )
+
