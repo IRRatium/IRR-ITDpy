@@ -26,15 +26,10 @@ pip install -e .
 
 ```python
 from  itdpy.client  import  ITDClient
-from  itdpy.auth  import  AuthManager
-from  itdpy.api  import  get_me
 
 client  =  ITDClient(refresh_token="Ваш refresh token")
 
-auth  =  AuthManager(client)
-auth.refresh_access_token()
-  
-me  =  get_me(client)
+me  =  client.get_me()
 print(me.id)
 print(me.username)
 ```
@@ -43,38 +38,57 @@ print(me.username)
 
 ```python
 from  itdpy.client  import  ITDClient
-from  itdpy.auth  import  AuthManager
-from  itdpy.api  import  update_profile
 from  datetime  import  datetime
 import  time
 
 client = ITDClient(refresh_token="Ваш_токен")
-auth = AuthManager(client)
 
-auth.refresh_access_token()
 
 while  True:
-	update_profile(client,  display_name=f"Фазлиддин |{datetime.now().strftime('%m.%d %H:%M:%S')}|")
+	client.update_profile(display_name=f"Фазлиддин |{datetime.now().strftime('%m.%d %H:%M:%S')}|")
 	time.sleep(1)
 ```
 
 ### Скрипт на обновление баннера 
 ```python
 from  itdpy.client  import  ITDClient
-from  itdpy.auth  import  AuthManager
-from  itdpy.api  import  update_profile, upload_file
 from  datetime  import  datetime
 import  time
 
 client  =  ITDClient(refresh_token="Ваш_токен")
-auth  =  AuthManager(client)
-auth.refresh_access_token()
 
-file  =  upload_file(client,  "matrix-rain-effect-animation-photoshop-editor.gif")
+file  =  client.upload_file("matrix-rain-effect-animation-photoshop-editor.gif")
 print(file.id)
-update  =  update_profile(client,  banner_id=file.id)
+update  =  client.update_profile(banner_id=file.id)
 print(update.banner)
 ```
+
+## ITDpy теперь поддерживает удобное форматирование текста через HTML.
+Больше не нужно вручную рассчитывать offset и length.
+| HTML             | Формат        |
+| ---------------- | ------------- |
+| `<b>` `<strong>` | Жирный        |
+| `<i>` `<em>`     | Курсив        |
+| `<u>`            | Подчёркивание |
+| `<s>` `<del>`    | Зачёркнутый   |
+| `<code>`         | Моноширинный  |
+| `<spoiler>`      | Спойлер       |
+```python
+from  itdpy.client  import  ITDClient
+
+client  =  ITDClient(refresh_token="Ваш_токен")
+client.create_post(
+    content="""
+Обновление <b>ITDpy</b> уже в процессе 🚀
+
+Добавлен <i>HTML → spans</i> парсер.
+""",
+    parse_html=True
+)
+
+```
+
+
 
 # Костомные запросы  
 
@@ -121,10 +135,8 @@ response = client.get( "/api/posts",
 
 ## Планы
 
-- Асинхронная версия библиотеки (`aioitd`)
 - Улучшенная обработка и форматирование ошибок
 - Логирование (через `logging`)
-- Расширение объектной модели (Post, Comment, User и др.)
 - Дополнительные API-эндпоинты по мере появления
 - Улучшение документации и примеров
 
