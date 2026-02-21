@@ -38,17 +38,25 @@ from .api import (
     get_pins,
     set_pin, 
     remove_pin,
-    vote
+    vote,
+    who_to_follow,
+    search_hashtags,
+    search,
+    update_notification_settings,
+    update_privacy,
+    get_trending_hashtags,
 )
 from .models import *
 
 class ITDClient:
-    """Low-level HTTP client for itd.com API."""
-
+    ######################################################
+    ############  Низкоуровневые методы API #############№
+    ######################################################
+    
     _DEFAULT_TIMEOUT = 15
     _UPLOAD_TIMEOUT = 3600
     _SDK_NAME = "itdpy"
-    _SDK_VERSION = "0.3"
+    _SDK_VERSION = "0.3.2"
     _PLATFORM = "python"
 
     def __init__(self, refresh_token: str, auto_auth: bool = True):
@@ -91,8 +99,8 @@ class ITDClient:
     def _bind_auth_manager(self, auth_manager: Any) -> None:
         self._auth_manager = auth_manager
 
-    def _set_access_token(self, token: str) -> None:
-        self._access_token = token
+    def _set_access_token(self, token: str) -> None: 
+        self._access_token = token 
         self.session.headers["Authorization"] = f"Bearer {token}"
 
     def _set_user_id(self, user_id: str) -> None:
@@ -117,6 +125,7 @@ class ITDClient:
         self,
         method: str,
         path: str,
+        *,
         retry: bool = True,
         retries: int = 3,
         **kwargs: Any
@@ -286,8 +295,8 @@ class ITDClient:
     def get_replies(self, comment_id: str, sort = "newest"):
         return get_replies(self, comment_id, sort)
     
-    def set_pin(self):
-        return set_pin(self)
+    def get_pins(self):
+        return get_pins(self)
     
     def remove_pin(self):
         return remove_pin(self)
@@ -297,3 +306,44 @@ class ITDClient:
     
     def vote(self, post_id, option_ids):
         return vote(self, post_id, option_ids)
+    
+    def who_to_follow(self):
+        return who_to_follow(self)
+    
+    def search_hashtags(self, name, limit = 20):
+        return search_hashtags(self, name, limit)
+    
+    def search(self, query, user_limit = 5, hashtag_limit = 5):
+        return search(self, query, user_limit, hashtag_limit)
+    
+    def update_privacy(
+        self,
+        *,
+        is_private: bool | None = None,
+        wall_access: str | None = None,
+        likes_visibility: str | None = None,
+        show_last_seen: bool | None = None,
+    ):
+        return update_privacy(
+        self,
+        is_private=is_private,
+        wall_access=wall_access,
+        likes_visibility=likes_visibility,
+        show_last_seen=show_last_seen,
+    )
+
+    def update_notification_settings(
+        self,
+        *,
+        enabled: bool | None = None,
+        comments: bool | None = None,
+        follows: bool | None = None,
+        likes: bool | None = None,
+        mentions: bool | None = None,
+        sound: bool | None = None,
+        wall_posts: bool | None = None,
+    ):
+        return update_notification_settings(self, enabled=enabled, comments=comments, follows=follows, likes=likes, mentions=mentions, sound=sound, wall_posts=wall_posts)
+    
+    def get_trending_hashtags(self, limit: int = 10):
+        return get_trending_hashtags(self, limit)

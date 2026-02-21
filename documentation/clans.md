@@ -20,8 +20,8 @@ pip install -e .
 
 ## Документация  
 
-- [Документация](documentation/index.md)  
-- [Быстрый старт](documentation/quickstart.md)  
+- [Документация](dosc/index.md)  
+- [Быстрый старт](dosc/quickstart.md)  
 
 ---  
   
@@ -150,3 +150,5 @@ response = client.get( "/api/posts",
 
 Проект активно развивается.
 Если у вас есть идеи или предложения — создавайте issue или pull request.
+
+← [Назад к документации](index.md)

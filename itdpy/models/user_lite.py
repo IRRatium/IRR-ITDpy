@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import Field
 from .base import ITDBaseModel
-from .pin_moddel import Pin
+from .pin import Pin
 
 class UserLite(ITDBaseModel):
     id: Optional[str] = None

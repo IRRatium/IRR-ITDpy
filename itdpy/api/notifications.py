@@ -1,6 +1,6 @@
 ﻿from __future__ import annotations
 
-from ..models.notifications import Notifications
+from ..models import Notifications
 from ._common import build_query, normalize_id_list
 
 

@@ -46,4 +46,3 @@ class Poll(ITDBaseModel):
             options=[PollOption(text=o) for o in options],
             multipleChoice=multiple_choice,
         )
-

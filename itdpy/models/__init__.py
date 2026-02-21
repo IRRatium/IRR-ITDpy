@@ -12,10 +12,14 @@ from .user_lite import UserLite
 from .users import Users
 from .poll import Poll, PollOption
 from .post_update import PostUpdate
-from .pin_moddel import Pin
+from .pin import Pin
+from .pins import Pins
 from .pagination import Pagination
 from .span import Span
-
+from .who_to_follow import WhoToFollow
+from .hashtags import HashtagPosts, TrendingHashtagsResponse, Hashtag
+from .search import Search
+from .settings_models import PrivacySettings, NotificationSettings
 __all__ = [
     "Actor",
     "Attachment",
@@ -33,6 +37,14 @@ __all__ = [
     "PostUpdate",
     "PollOption",
     "Pin",
+    "Pins",
     "Pagination",
-    "Span"
+    "Span",
+    "WhoToFollow",
+    "HashtagPosts",
+    "Search",
+    "PrivacySettings",
+    "NotificationSettings",
+    "TrendingHashtagsResponse",
+    "Hashtag"
 ]

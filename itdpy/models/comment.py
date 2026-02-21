@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from typing import Optional
 from pydantic import AliasChoices, Field
@@ -12,11 +12,7 @@ class Comment(ITDBaseModel):
     id: str
     content: str | None = None
 
-    likes_count: int = Field(
-        0,
-        alias="likesCount",
-        validation_alias=AliasChoices("likesCount", "likkesCount"),
-    )
+    likes_count: int = Field(0, alias="likesCount", validation_alias=AliasChoices("likesCount", "likkesCount"))
 
     replies_count: int = Field(0, alias="repliesCount")
     is_liked: bool = Field(False, alias="isLiked")
@@ -32,5 +28,3 @@ class Comment(ITDBaseModel):
 
     def __repr__(self) -> str:
         return f"<Comment {self.id}>"
-
-Comment.model_rebuild()

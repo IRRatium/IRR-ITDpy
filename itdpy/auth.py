@@ -1,7 +1,6 @@
 ﻿from __future__ import annotations
 
 class AuthManager:
-    """Authentication helper that refreshes access token via refresh cookie."""
 
     def __init__(self, client):
         self.client = client
