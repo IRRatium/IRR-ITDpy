@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from typing import Any
 import time
@@ -64,7 +64,7 @@ class ClientInitResult:
 
 class ITDClient:
     ######################################################
-    ############  Низкоуровневые методы API #############№
+    ############  Низкоуровневые методы API ##############
     ######################################################
     
     _DEFAULT_TIMEOUT = 15
@@ -211,7 +211,6 @@ class ITDClient:
     
     @classmethod
     def create(cls, refresh_token: str):
-
         client = cls(refresh_token, auto_auth=False, enable_retry=False)
 
         auth = AuthManager(client)
@@ -268,7 +267,7 @@ class ITDClient:
         comment_id: str,
         content: str,
         attachment_ids: list[str] | str | None = None,
-    )  -> Comment:
+    ) -> Comment:
         return reply_to_comment(self, comment_id, content, attachment_ids)
     
     def delete_comment(self, comment_id: str) -> bool:
@@ -296,9 +295,9 @@ class ITDClient:
         return mark_notification_read(self, notification_id)
     
     def mark_all_notification_read(self, notification_ids):
-        return mark_notification_read(self, notification_ids)
+        return mark_all_notification_read(self, notification_ids)
     
-    def get_posts(self, limit: int = 20, tab: str = "popular", cursor: int = 1 ) -> Posts:
+    def get_posts(self, limit: int = 20, tab: str = "popular", cursor: int = 1) -> Posts:
         return get_posts(self, limit, tab, cursor)
     
     def get_post(self, post_id: str) -> Post:
@@ -329,16 +328,16 @@ class ITDClient:
     def repost_post(self, post_id: str, content: str | None = None) -> bool:
         return repost_post(self, post_id, content)
     
-    def get_user_posts(self, username: str, limit: int = 20, sort: str = "new",  cursor: str | None = None) -> Posts:
+    def get_user_posts(self, username: str, limit: int = 20, sort: str = "new", cursor: str | None = None) -> Posts:
         return get_user_posts(self, username, limit, sort, cursor)
     
     def update_profile(
-    self,
-    *,
-    display_name: str | None = None,
-    username: str | None = None,
-    bio: str | None = None,
-    banner_id: str | None = None,
+        self,
+        *,
+        display_name: str | None = None,
+        username: str | None = None,
+        bio: str | None = None,
+        banner_id: str | None = None,
     ) -> Me:
         return update_profile(self, display_name=display_name, username=username, bio=bio, banner_id=banner_id)
     
@@ -360,7 +359,7 @@ class ITDClient:
     def get_following(self, username: str, page: int = 1, limit: int = 30) -> Users:
         return get_following(self, username, page, limit)
 
-    def get_replies(self, comment_id: str, sort = "newest"):
+    def get_replies(self, comment_id: str, sort="newest"):
         return get_replies(self, comment_id, sort)
     
     def get_pins(self):
@@ -378,10 +377,10 @@ class ITDClient:
     def who_to_follow(self):
         return who_to_follow(self)
     
-    def search_hashtags(self, name, limit = 20):
+    def search_hashtags(self, name, limit=20):
         return search_hashtags(self, name, limit)
     
-    def search(self, query, user_limit = 5, hashtag_limit = 5):
+    def search(self, query, user_limit=5, hashtag_limit=5):
         return search(self, query, user_limit, hashtag_limit)
     
     def update_privacy(
@@ -393,12 +392,12 @@ class ITDClient:
         show_last_seen: bool | None = None,
     ):
         return update_privacy(
-        self,
-        is_private=is_private,
-        wall_access=wall_access,
-        likes_visibility=likes_visibility,
-        show_last_seen=show_last_seen,
-    )
+            self,
+            is_private=is_private,
+            wall_access=wall_access,
+            likes_visibility=likes_visibility,
+            show_last_seen=show_last_seen,
+        )
 
     def update_notification_settings(
         self,
@@ -411,7 +410,61 @@ class ITDClient:
         sound: bool | None = None,
         wall_posts: bool | None = None,
     ):
-        return update_notification_settings(self, enabled=enabled, comments=comments, follows=follows, likes=likes, mentions=mentions, sound=sound, wall_posts=wall_posts)
+        return update_notification_settings(
+            self,
+            enabled=enabled,
+            comments=comments,
+            follows=follows,
+            likes=likes,
+            mentions=mentions,
+            sound=sound,
+            wall_posts=wall_posts,
+        )
     
     def get_trending_hashtags(self, limit: int = 10):
         return get_trending_hashtags(self, limit)
+
+    # --- Новые методы IRR-ITDpy ---
+
+    def keep_online(self, on_event=None, background: bool = True):
+        """
+        Поддерживает статус "в сети" через SSE-поток.
+
+        Параметры:
+            on_event   — колбэк(event_type, data) для уведомлений в реальном времени
+            background — True (по умолчанию): запускает в фоновом потоке
+
+        Пример:
+            client.keep_online()
+
+            def handler(event, data):
+                if event == "like":
+                    print("Новый лайк!")
+            client.keep_online(on_event=handler)
+        """
+        return keep_online(self, on_event=on_event, background=background)
+
+    def get_wall(self, username: str, limit: int = 20, cursor: str | None = None):
+        """Получить посты со стены пользователя."""
+        return get_wall(self, username, limit, cursor)
+
+    def post_to_wall(self, username: str, content: str):
+        """Написать пост на стену пользователя."""
+        return post_to_wall(self, username, content)
+
+    def view_post(self, post_id: str) -> bool:
+        """Отметить пост как просмотренный."""
+        return view_post(self, post_id)
+
+    def view_posts(self, post_ids: list[str]) -> dict[str, bool]:
+        """Отметить несколько постов как просмотренные."""
+        return view_posts(self, post_ids)
+
+    def set_username(self, username: str) -> Me:
+        """
+        Сменить юзернейм текущего пользователя.
+
+        Пример:
+            client.set_username("mynewname42")
+        """
+        return self.update_profile(username=username)
