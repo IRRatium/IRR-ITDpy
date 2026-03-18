@@ -19,5 +19,5 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/IRRatium/ITDpy"
-Repository = "https://github.com/IRRatium/ITDpy"
+Homepage = "https://github.com/IRRatium/IRR-ITDpy"
+Repository = "https://github.com/IRRatium/IRR-ITDpy"
