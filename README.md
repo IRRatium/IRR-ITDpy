@@ -1,12 +1,12 @@
-# IRR-ITDpy
+# itdirr
 
 <p align="center">
   <img src="https://i.postimg.cc/gJ9z8RDk/ITDpy-(1)-pixian-ai.png" width="700">
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/irr-itdpy/"><img src="https://img.shields.io/pypi/v/irr-itdpy?color=blue&label=PyPI" alt="PyPI"></a>
-  <a href="https://pepy.tech/project/irr-itdpy"><img src="https://static.pepy.tech/badge/irr-itdpy" alt="Downloads"></a>
+  <a href="https://pypi.org/project/itdirr/"><img src="https://img.shields.io/pypi/v/itdirr?color=blue&label=PyPI" alt="PyPI"></a>
+  <a href="https://pepy.tech/project/itdirr"><img src="https://static.pepy.tech/badge/itdirr" alt="Downloads"></a>
   <a href="https://github.com/Gam5510/ITDpy/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Gam5510/ITDpy" alt="License"></a>
   <img src="https://img.shields.io/badge/python-3.9+-blue" alt="Python 3.9+">
 </p>
@@ -22,7 +22,7 @@
 
 ## Отличия от оригинала
 
-| Функция | ITDpy | IRR-ITDpy |
+| Функция | ITDpy | itdirr |
 |---------|-------|-----------|
 | Статус онлайн (`keep_online`) | ❌ | ✅ |
 | Стена (`get_wall`, `post_to_wall`) | ❌ | ✅ |
@@ -37,13 +37,13 @@
 ## Установка
 
 ```bash
-pip install irr-itdpy
+pip install itdirr
 ```
 
 Или через git:
 ```bash
-git clone https://github.com/IRRatium/IRR-ITDpy
-cd IRR-ITDpy
+git clone https://github.com/IRRatium/itdirr
+cd itdirr
 pip install -e .
 ```
 
