@@ -28,7 +28,6 @@
 | Стена (`get_wall`, `post_to_wall`) | ❌ | ✅ |
 | Просмотры постов (`view_post`) | ❌ | ✅ |
 | Смена юзернейма (`set_username`) | ❌ | ✅ |
-| Генератор юзернеймов (`random_username`) | ❌ | ✅ |
 | Посты, комментарии, уведомления | ✅ | ✅ |
 | Пины, опросы, настройки | ✅ | ✅ |
 | Поиск, дискавери | ✅ | ✅ |
@@ -213,15 +212,6 @@ suggestions = client.who_to_follow()
 ```python
 post = client.get_post(post_id)
 client.vote(post.id, option_ids=post.poll.options[0].id)
-```
-
-### Утилиты ✨
-```python
-from itdpy.utils import random_username
-
-random_username()              # "wolf4821"
-random_username(word="cyber")  # "cyber391"
-random_username(digits=3)      # "fox742"
 ```
 
 ---
