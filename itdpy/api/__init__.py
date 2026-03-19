@@ -41,6 +41,7 @@ from .settings import update_notification_settings, update_privacy
 from .online import keep_online
 from .wall import get_wall, post_to_wall
 from .views import view_post, view_posts
+from .portal import get_portal
 
 __all__ = [
     "create_post",
@@ -86,4 +87,5 @@ __all__ = [
     "post_to_wall",
     "view_post",
     "view_posts",
+    "get_portal",
 ]
