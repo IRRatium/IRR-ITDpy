@@ -22,7 +22,7 @@ pip install -e .
 3. Найди куку `refresh_token` и скопируй значение
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_refresh_token")
 
@@ -39,7 +39,7 @@ print(me.followers_count)
 ### Обновление имени в реальном времени
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 from datetime import datetime
 import time
 
@@ -53,7 +53,7 @@ while True:
 ### Обновление баннера
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_токен")
 
@@ -65,7 +65,7 @@ print(update.banner)
 ### Держать статус онлайн
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_токен")
 
@@ -79,7 +79,7 @@ while True:
 ### Обработка уведомлений в реальном времени
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_токен")
 
@@ -97,7 +97,7 @@ client.keep_online(on_event=on_event)
 ### Проверить текущий ивент
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_токен")
 
@@ -110,7 +110,7 @@ if portal.active:
 ### Верификация аккаунта
 
 ```python
-from itdpy import ITDClient, NotVerifiedException
+from itdirr import ITDClient, NotVerifiedException
 
 client = ITDClient(refresh_token="ваш_токен")
 
