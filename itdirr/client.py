@@ -52,6 +52,7 @@ from .api import (
     view_post,
     view_posts,
     get_portal,
+    download_banner,
 )
 from .models import *
 
