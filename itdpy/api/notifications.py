@@ -1,7 +1,7 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from ..models import Notifications
-from ._common import build_query, normalize_id_list
+from ._common import build_query
 
 
 def get_notifications(client, offset: int = 0, limit: int = 20) -> Notifications:
@@ -18,12 +18,11 @@ def mark_notification_read(client, notification_id: str) -> bool:
     return bool(data.get("success", False))
 
 
-def mark_all_notification_read(client, notification_ids: list[str] | str | None) -> int:
-    normalized = normalize_id_list(notification_ids)
-    if not normalized:
-        return 0
-
-    response = client.post("/api/notifications/read-batch", json=normalized)
+def mark_all_notification_read(client, notification_ids=None) -> bool:
+    """
+    Отметить все уведомления как прочитанные.
+    notification_ids — не используется, оставлен для совместимости.
+    """
+    response = client.post("/api/notifications/read-all")
     response.raise_for_status()
-    data = response.json()
-    return int(data.get("count", 0))
+    return response.status_code in (200, 204)
