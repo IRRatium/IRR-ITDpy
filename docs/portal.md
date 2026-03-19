@@ -54,7 +54,7 @@ print("Верифицируй аккаунт:", link)
 Если аккаунт не верифицирован, при любом действии (создание поста, комментария и т.д.) автоматически выбрасывается исключение `NotVerifiedException` со ссылкой на верификацию.
 
 ```python
-from itdpy import ITDClient, NotVerifiedException
+from itdirr import ITDClient, NotVerifiedException
 
 client = ITDClient(refresh_token="...")
 

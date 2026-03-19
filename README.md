@@ -55,7 +55,7 @@ pip install -e .
 ## Быстрый старт
 
 ```python
-from itdpy import ITDClient
+from itdirr import ITDClient
 
 client = ITDClient(refresh_token="ваш_токен")
 

@@ -90,7 +90,7 @@
 
 ## Пример использования
 ```python
-from itdpy import ITDClient, NotVerifiedException
+from itdirr import ITDClient, NotVerifiedException
 
 client = ITDClient(refresh_token="your_refresh_token")
 
