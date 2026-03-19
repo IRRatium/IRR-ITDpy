@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/IRRatium/itdirr">
-    <img src="assets/logo.png" width="700">
+    <img src="https://i.ibb.co/MxbWvPh9/itdirr.png" width="700">
   </a>
 </p>
 
