@@ -294,7 +294,7 @@ class ITDClient:
     def mark_notification_read(self, notification_id) -> bool:
         return mark_notification_read(self, notification_id)
     
-    def mark_all_notification_read(self, notification_ids):
+    def mark_all_notification_read(self, notification_ids=None):
         return mark_all_notification_read(self, notification_ids)
     
     def get_posts(self, limit: int = 20, tab: str = "popular", cursor: int = 1) -> Posts:
