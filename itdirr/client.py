@@ -509,13 +509,13 @@ class ITDClient:
     
     
     def download_banner(self, username: str, path: str) -> str | None:
-    """
-    Скачать баннер пользователя и сохранить в файл.
-    Возвращает путь к файлу или None если баннера нет.
+        """
+        Скачать баннер пользователя и сохранить в файл.
+        Возвращает путь к файлу или None если баннера нет.
 
-    Пример:
-        client.download_banner("gam5510", "banner.png")
-        client.download_banner("gam5510", "banner.gif")
-    """
-    from .api.banner import download_banner
-    return download_banner(self, username, path)
+        Пример:
+            client.download_banner("gam5510", "banner.png")
+            client.download_banner("gam5510", "banner.gif")
+        """
+        from .api.banner import download_banner
+        return download_banner(self, username, path)
